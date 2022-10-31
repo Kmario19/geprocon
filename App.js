@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
+import LaunchPad from './components/LaunchPad';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Image source={require('./assets/logo_head.png')} style={styles.logo} />
-      <Text style={styles.slogan}>App under construction 🛠</Text>
-      <Button title="Start" color={'#fdd10c'} />
+      <LaunchPad />
       <StatusBar style="auto" />
     </View>
   );
@@ -20,8 +20,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    height: '89px',
-    width: '396px',
+    height: '10%',
+    width: '90%',
+    marginVertical: 10,
   },
   slogan: {
     marginVertical: '5em',
