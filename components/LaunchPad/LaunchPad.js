@@ -5,8 +5,8 @@ import {
   FlatList,
   StyleSheet,
   Text,
-  StatusBar,
   Image,
+  Button,
 } from 'react-native';
 
 const DATA = [
@@ -24,6 +24,7 @@ const DATA = [
     id: 'units',
     title: 'Units',
     icon: require('../../assets/icons/tuning.svg'),
+    navigateTo: 'Units',
   },
   {
     id: 'apus',
@@ -32,15 +33,22 @@ const DATA = [
   },
 ];
 
-const Item = ({ icon, title }) => (
+const Item = ({ item, navigation }) => (
   <View style={styles.item}>
-    <Image source={icon} style={styles.icon} />
-    <Text style={styles.title}>{title}</Text>
+    <Image source={item.icon} style={styles.icon} />
+    {item.navigateTo ? (
+      <Button
+        title={item.title}
+        onPress={() => navigation.navigate(item.navigateTo)}
+      />
+    ) : (
+      <Text style={styles.title}>{item.title}</Text>
+    )}
   </View>
 );
 
-const LaunchPad = () => {
-  const renderItem = ({ item }) => <Item title={item.title} icon={item.icon} />;
+const LaunchPad = ({ navigation }) => {
+  const renderItem = ({ item }) => <Item item={item} navigation={navigation} />;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -57,7 +65,6 @@ const LaunchPad = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
   },
   item: {
     backgroundColor: '#f4f4f4',

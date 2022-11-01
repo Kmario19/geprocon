@@ -1,30 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Image } from 'react-native';
-import LaunchPad from './components/LaunchPad';
+import HomeScreen from './components/Home';
+import UnitsScreen from './components/Units/List';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Image source={require('./assets/logo_head.png')} style={styles.logo} />
-      <LaunchPad />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Units" component={UnitsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logo: {
-    height: '10%',
-    width: '90%',
-    marginVertical: 10,
-  },
-  slogan: {
-    marginVertical: '5em',
-  },
-});
